@@ -1,0 +1,29 @@
+{
+  "name": "mysite-auth",
+  "version": "1.0.0",
+  "description": "Mysite authentication service",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samssi/mysite-auth.git"
+  },
+  "author": "samssi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samssi/mysite-auth/issues"
+  },
+  "homepage": "https://github.com/samssi/mysite-auth#readme",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "helmet": "^2.1.1",
+    "jsonwebtoken": "^7.0.0",
+    "ramda": "^0.21.0",
+    "winston": "^2.2.0"
+  }
+}
