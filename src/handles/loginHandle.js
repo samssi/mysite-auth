@@ -1,17 +1,9 @@
 'use strict';
 
-const config = require('config');
-const relativeFs = require('../util/relativeFs')
+const loginsService = require('../service/loginService');
 
 function loginHandle(req, res) {
-    res.status(200).send(getLoginJson());
-}
-
-function getLoginJson() {
-    const credentialsJsonLocation = config.get('jsonStore.credentials');
-    const credentialsJsonFile = relativeFs.readFileFromRelativePath(credentialsJsonLocation);
-    const credentialsJson = JSON.parse(credentialsJsonFile);
-    return credentialsJson;
+    res.status(200).send(loginsService.getLoginJson());
 }
 
 module.exports = loginHandle;
