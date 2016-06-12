@@ -1,19 +1,19 @@
 'use strict';
 
 const config = require('config');
+const R = require('ramda');
 const relativeFs = require('../util/relativeFs');
 const hashingService = require('../service/hashingService');
 
 function login(userInput) {
-    const loginJson = getLoginJson();
-    const hashedInputPassword = hashingService.hashPassword(userInput.password, loginJson.salt);
-    return { login: doesLoginAndPasswordMatch(hashedInputPassword, loginJson.password) }
-
-
+    const credentialsJson = getLoginJson();
+    const userCredentials = R.prop(userInput.username, credentialsJson)
+    const hashedInputPassword = hashingService.hashPassword(userInput.password, userCredentials.salt);
+    return { login: doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password) }
 }
 
-function doesLoginAndPasswordMatch(hashedInputPassword, hashedStoredPassword) {
-    return hashedInputPassword == hashedStoredPassword;
+function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPassword) {
+    return (hashedInputPassword == hashedStoredPassword);
 }
 
 function getLoginJson() {
