@@ -2,8 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const loginService = require('../service/loginService')
+const loginHandle = require('../service/loginHandle')
+const passwordHasherHandle = require('../service/hashingHandle')
 
-router.get('/login', loginService);
+router.get('/login', loginHandle);
+router.post('/util/password', passwordHasherHandle);
 
 module.exports = router;

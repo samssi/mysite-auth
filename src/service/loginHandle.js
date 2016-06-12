@@ -3,7 +3,7 @@
 const config = require('config');
 const relativeFs = require('../util/relativeFs')
 
-function loginService(req, res) {
+function loginHandle(req, res) {
     res.status(200).send(getLoginJson());
 }
 
@@ -14,4 +14,4 @@ function getLoginJson() {
     return credentialsJson;
 }
 
-module.exports = loginService;
+module.exports = loginHandle;
