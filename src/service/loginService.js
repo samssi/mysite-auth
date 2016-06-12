@@ -7,9 +7,17 @@ const hashingService = require('../service/hashingService');
 
 function login(userInput) {
     const credentialsJson = getLoginJson();
-    const userCredentials = R.prop(userInput.username, credentialsJson)
+    const userCredentials = R.prop(userInput.username, credentialsJson);
+    return userCredentials == undefined ? unknownUser() : authenticate(userInput, userCredentials);
+}
+
+function authenticate(userInput, userCredentials) {
     const hashedInputPassword = hashingService.hashPassword(userInput.password, userCredentials.salt);
     return { login: doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password) }
+}
+
+function unknownUser() {
+    return { login: 'unknown' };
 }
 
 function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPassword) {
