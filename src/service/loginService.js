@@ -7,13 +7,13 @@ const hashingService = require('../service/hashingService');
 function login(userInput) {
     const loginJson = getLoginJson();
     const hashedInputPassword = hashingService.hashPassword(userInput.password, loginJson.salt);
+    return { login: doesLoginAndPasswordMatch(hashedInputPassword, loginJson.password) }
 
-    if (hashedInputPassword == loginJson.password) {
-        return { login: true }
-    }
-    else {
-        return { login: false }
-    }
+
+}
+
+function doesLoginAndPasswordMatch(hashedInputPassword, hashedStoredPassword) {
+    return hashedInputPassword == hashedStoredPassword;
 }
 
 function getLoginJson() {
