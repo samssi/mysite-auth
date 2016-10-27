@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 app.use('/', rootHandler);
 app.use(errorHandler);
 
-app.listen(8090, () =>
-    console.log('Server started at port 8090')
+app.listen(8100, () =>
+    console.log('Server started at port 8100')
 );
 
 module.exports = app;
