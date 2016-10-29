@@ -3,7 +3,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const rootHandler = require('./handlers/rootHandler');
 const errorHandler = require('./handlers/errorHandler')
 
