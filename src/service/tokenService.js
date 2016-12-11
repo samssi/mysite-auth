@@ -1,7 +1,8 @@
 'use strict';
 
+const config = require('config');
 const jwt = require('jsonwebtoken');
-const secret = 'secret';
+const secret = config.get('jwt.secret');
 
 function createToken(username) {
     return jwt.sign(constructPayload(username), secret, { expiresIn: '4h' });

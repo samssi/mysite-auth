@@ -1,5 +1,8 @@
 {
   "jsonStore": {
     "credentials": "json/credentials.json"
+  },
+  "jwt": {
+    "secret": "very secret"
   }
 }
