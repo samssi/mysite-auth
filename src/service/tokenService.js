@@ -11,8 +11,7 @@ function createToken(username) {
 function constructPayload(username) {
     return {
         iss: 'MySite',
-        sub: 'MySite JWT token',
-        username: username
+        sub: username
     };
 }
 

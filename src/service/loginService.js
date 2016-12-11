@@ -15,7 +15,8 @@ function login(userInput) {
 function authenticate(userInput, userCredentials) {
     const hashedInputPassword = hashingService.hashPassword(userInput.password, userCredentials.salt);
     if (doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password)) {
-        return {token: tokenService.createToken(userCredentials.username)};
+        console.log('User ' + userInput.username + ': logged in.')
+        return {token: tokenService.createToken(userInput.username)};
     }
     return { token: '' }
 }
