@@ -4,20 +4,24 @@ const config = require('config');
 const R = require('ramda');
 const relativeFs = require('../util/relativeFs');
 const hashingService = require('../service/hashingService');
+const tokenService = require('./tokenService')
 
 function login(userInput) {
     const credentialsJson = getLoginJson();
     const userCredentials = R.prop(userInput.username, credentialsJson);
-    return userCredentials == undefined ? unknownUser() : authenticate(userInput, userCredentials);
+    return userCredentials == undefined ? unknownUser(userInput.username) : authenticate(userInput, userCredentials);
 }
 
 function authenticate(userInput, userCredentials) {
     const hashedInputPassword = hashingService.hashPassword(userInput.password, userCredentials.salt);
-    return { login: doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password) }
+    if (doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password)) {
+        return {token: tokenService.createToken(userCredentials.username)};
+    }
+    return { token: '' }
 }
 
 function unknownUser() {
-    return { login: 'unknown' };
+    return { token: '' };
 }
 
 function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPassword) {
@@ -31,4 +35,4 @@ function getLoginJson() {
     return credentialsJson;
 }
 
-module.exports = { login }
+module.exports = { login };
