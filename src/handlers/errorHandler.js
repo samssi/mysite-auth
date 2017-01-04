@@ -1,8 +1,11 @@
 'use strict';
 
+const bunyan = require('bunyan');
+const logger = bunyan.createLogger({name: 'mysite-auth-errorHandler'});
+
 function errorHandler(err, req, res, next) {
-    console.log(err)
-    res.status(500).send('Internal server error');
+    logger.error(err, "Internal server error!")
+    res.status(500).send('Internal server error!');
 }
 
 module.exports = errorHandler;
