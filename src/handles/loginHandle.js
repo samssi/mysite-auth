@@ -4,7 +4,13 @@ const loginService = require('../service/loginService');
 
 function loginHandle(req, res) {
     const loginJson = req.body;
-    res.status(200).send(loginService.login(loginJson));
+    const login = loginService.login(loginJson);
+    if (login.token === "") {
+        res.status(401).send(login);
+    }
+    else {
+        res.status(200).send(login);
+    }
 }
 
 module.exports = loginHandle;
