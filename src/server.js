@@ -10,12 +10,15 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 const rootHandler = require('./handlers/rootHandler');
-const errorHandler = require('./handlers/errorHandler')
+const errorHandler = require('./handlers/errorHandler');
+const healthCheckHandler = require('./handlers/healthCheckHandler');
+
 
 app.use(helmet());
 app.use(bodyParser.json());
 
 app.use('/', rootHandler);
+app.use('/health-check', healthCheckHandler);
 app.use(errorHandler);
 
 app.listen(8100, () =>
