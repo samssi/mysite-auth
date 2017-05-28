@@ -3,7 +3,7 @@
 const bunyan = require('bunyan');
 const logger = bunyan.createLogger({name: 'mysite-auth-loginService'});
 
-
+const userhome = require('userhome');
 const config = require('config');
 const R = require('ramda');
 const relativeFs = require('../util/relativeFs');
@@ -36,7 +36,7 @@ function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPa
 }
 
 function getLoginJson() {
-    const credentialsJsonLocation = config.get('jsonStore.credentials');
+    const credentialsJsonLocation = userhome(config.get('JsonStore.credentials'));
     const credentialsJsonFile = relativeFs.readFileFromRelativePath(credentialsJsonLocation);
     const credentialsJson = JSON.parse(credentialsJsonFile);
     return credentialsJson;

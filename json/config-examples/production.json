@@ -1,0 +1,12 @@
+{
+  "ConfigMetadata": {
+    "description": "Production context config",
+    "version": "1.0"
+  },
+  "JsonStore": {
+    "credentials": ".mysite-credentials/credentials.json"
+  },
+  "JWT": {
+    "secret": "very secret"
+  }
+}
