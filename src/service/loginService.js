@@ -36,7 +36,7 @@ function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPa
 }
 
 function getLoginJson() {
-    const credentialsJsonLocation = userhome(config.get('JsonStore.credentials'));
+    const credentialsJsonLocation = config.get('JsonStore.credentials');
     const credentialsJsonFile = relativeFs.readFileFromRelativePath(credentialsJsonLocation);
     const credentialsJson = JSON.parse(credentialsJsonFile);
     return credentialsJson;
