@@ -23,7 +23,7 @@ app.use('/health-check', healthCheckHandler);
 app.use(errorHandler);
 
 const configVersion = config.get("ConfigMetadata.description") + " version: " + config.get("ConfigMetadata.version");
-logger.info("Running " + configVersion)
+logger.info("Running " + configVersion);
 
 app.listen(8100, () =>
     logger.info('Server started at port 8100')

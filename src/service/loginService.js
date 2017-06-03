@@ -19,7 +19,7 @@ function login(userInput) {
 function authenticate(userInput, userCredentials) {
     const hashedInputPassword = hashingService.hashPassword(userInput.password, userCredentials.salt);
     if (doesUserInputAndStoredPasswordMatch(hashedInputPassword, userCredentials.password)) {
-        logger.info("Generating new token for user '%s'", userInput.username)
+        logger.info("Generating new token for user '%s'", userInput.username);
         return {token: tokenService.createToken(userInput.username)};
     }
     logger.warn("Wrong password entered by user '%s'", userInput.username);
