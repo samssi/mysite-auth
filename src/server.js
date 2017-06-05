@@ -18,7 +18,7 @@ const healthCheckHandler = require('./handlers/healthCheckHandler');
 app.use(helmet());
 app.use(bodyParser.json());
 
-app.use('/', rootHandler);
+app.use('/api/v1', rootHandler);
 app.use('/health-check', healthCheckHandler);
 app.use(errorHandler);
 
