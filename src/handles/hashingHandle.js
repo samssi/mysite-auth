@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const hashingService = require('../service/hashingService');
+const hashingService = require("../service/hashingService");
 
 function passwordHasherHandle(req, res) {
     const requestedPasswordJson = req.body;

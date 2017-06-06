@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const loginService = require('../service/loginService');
+const loginService = require("../service/loginService");
 
 function loginHandle(req, res) {
     const loginJson = req.body;

@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const bunyan = require('bunyan');
-const logger = bunyan.createLogger({name: 'mysite-auth-loginService'});
+const bunyan = require("bunyan");
+const logger = bunyan.createLogger({name: "mysite-auth-loginService"});
 
-const userhome = require('userhome');
-const config = require('config');
-const R = require('ramda');
-const relativeFs = require('../util/relativeFs');
-const hashingService = require('../service/hashingService');
-const tokenService = require('./tokenService');
+const userhome = require("userhome");
+const config = require("config");
+const R = require("ramda");
+const relativeFs = require("../util/relativeFs");
+const hashingService = require("../service/hashingService");
+const tokenService = require("./tokenService");
 
 function login(userInput) {
     const credentialsJson = getLoginJson();
@@ -23,12 +23,12 @@ function authenticate(userInput, userCredentials) {
         return {token: tokenService.createToken(userInput.username)};
     }
     logger.warn("Wrong password entered by user '%s'", userInput.username);
-    return { token: '' }
+    return { token: "" }
 }
 
 function unknownUser(username) {
     logger.warn("Faulty token generation attempt from user '%s'", username);
-    return { token: '' };
+    return { token: "" };
 }
 
 function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPassword) {
@@ -36,7 +36,7 @@ function doesUserInputAndStoredPasswordMatch(hashedInputPassword, hashedStoredPa
 }
 
 function getLoginJson() {
-    const credentialsJsonLocation = config.get('JsonStore.credentials');
+    const credentialsJsonLocation = config.get("JsonStore.credentials");
     const credentialsJsonFile = relativeFs.readFileFromRelativePath(credentialsJsonLocation);
     const credentialsJson = JSON.parse(credentialsJsonFile);
     return credentialsJson;
