@@ -14,6 +14,9 @@ make run-docker-image
 Default username is: foobar
 Default password is: logal
 
+Second username is: baz
+Second passoword is: boz
+
 ## Running mysite-auth in production mode
 
 Create on the host computer docker users home directory `~/.mysite-auth-config` and `~/.mysite-credentials`
